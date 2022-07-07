@@ -89,6 +89,9 @@ export class ObservableHistory<S extends LocationState = {}> {
       reaction(() => createPath(this.location), path => {
         let currentPath = createPath(this.history.location);
         if (currentPath !== path) {
+          /* TODO: JSFIX could not patch the breaking change:
+          Removed relative pathname support in hash history and memory history 
+          Suggested fix: Relative paths are no longer supportet by the hash/memory history, hence we recommend using the entire path name instead. */
           this.history.push(path);
         }
       }),
@@ -124,8 +127,14 @@ export class ObservableHistory<S extends LocationState = {}> {
       ...this.normalize(location),
     };
     if (replace) {
+      /* TODO: JSFIX could not patch the breaking change:
+      Removed relative pathname support in hash history and memory history 
+      Suggested fix: Relative paths are no longer supportet by the hash/memory history, hence we recommend using the entire path name instead. */
       this.history.replace(location);
     } else {
+      /* TODO: JSFIX could not patch the breaking change:
+      Removed relative pathname support in hash history and memory history 
+      Suggested fix: Relative paths are no longer supportet by the hash/memory history, hence we recommend using the entire path name instead. */
       this.history.push(location);
     }
   }
